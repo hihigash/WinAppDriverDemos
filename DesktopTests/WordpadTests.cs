@@ -3,35 +3,35 @@ using OpenQA.Selenium.Support.UI;
 namespace DesktopTests;
 
 [TestClass]
-public class NotepadTests : DesktopSession
+public class WordPadTests : DesktopSession
 {
     [Ignore]
     [TestMethod]
-    public void LaunchNotepad_NoWait()
+    public void LaunchWordpad_NoWait()
     {
         var wait = new DefaultWait<WindowsDriver<WindowsElement>>(Session!);
         Session?.SendKey(Keys.Meta + "s" + Keys.Meta);
-        Session?.SendKey("notepad" + Keys.Enter);
+        Session?.SendKey("wordpad" + Keys.Enter);
 
-        var notepadWindow = Session?.FindElementByName("Untitled - Notepad");
+        var notepadWindow = Session?.FindElementByName("Document - WordPad");
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);
     }
 
     [TestMethod]
-    public void LaunchNotepad_NotSmart()
+    public void LaunchWordpad_NotSmart()
     {
         Session?.SendKey(Keys.Meta + "s" + Keys.Meta);
         Thread.Sleep(TimeSpan.FromSeconds(5));
-        Session?.SendKey("notepad");
+        Session?.SendKey("wordpad");
         Session?.SendKey(Keys.Enter);
 
         Thread.Sleep(TimeSpan.FromSeconds(5));
-        var notepadWindow = Session?.FindElementByName("Untitled - Notepad");
+        var notepadWindow = Session?.FindElementByName("Document - WordPad");
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);
     }
 
     [TestMethod]
-    public void LaunchNotepad_Smart()
+    public void LaunchWordpad_Smart()
     {
         var wait = new DefaultWait<WindowsDriver<WindowsElement>>(Session!)
         {
@@ -46,14 +46,14 @@ public class NotepadTests : DesktopSession
             var textbox = driver.FindElementByName("Search box");
             return textbox != null;
         });
-        Session?.SendKey("notepad" + Keys.Enter);
+        Session?.SendKey("wordpad" + Keys.Enter);
 
         wait.Until(driver =>
         {
-            var window = driver.FindElementByName("Untitled - Notepad");
+            var window = driver.FindElementByName("Document - WordPad");
             return window != null;
         });
-        var notepadWindow = Session?.FindElementByName("Untitled - Notepad");
+        var notepadWindow = Session?.FindElementByName("Document - WordPad");
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);
     }
 }

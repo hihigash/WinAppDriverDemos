@@ -28,7 +28,7 @@ namespace DesktopTests
                 return element != null;
             });
 
-            var settingsWindow = Session?.FindElementByName("Sessions");
+            var settingsWindow = Session?.FindElementByName("Settings");
             var listItem = settingsWindow?.FindElementByName("Bluetooth & devices");
             listItem?.Click();
 
