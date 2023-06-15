@@ -13,7 +13,8 @@ public class WordPadTests : DesktopSession
         Session?.SendKey(Keys.Meta + "s" + Keys.Meta);
         Session?.SendKey("wordpad" + Keys.Enter);
 
-        var notepadWindow = Session?.FindElementByName("Document - WordPad");
+        //var notepadWindow = Session?.FindElementByName("Document - WordPad"); // for English Edition
+        var notepadWindow = Session?.FindElementByName("ドキュメント - ワードパッド"); // for Japanese Edition
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);
     }
 
@@ -26,7 +27,8 @@ public class WordPadTests : DesktopSession
         Session?.SendKey(Keys.Enter);
 
         Thread.Sleep(TimeSpan.FromSeconds(5));
-        var notepadWindow = Session?.FindElementByName("Document - WordPad");
+        //var notepadWindow = Session?.FindElementByName("Document - WordPad"); // for English Edition
+        var notepadWindow = Session?.FindElementByName("ドキュメント - ワードパッド"); // for Japanese Edition
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);
     }
 
@@ -43,17 +45,19 @@ public class WordPadTests : DesktopSession
         Session?.SendKey(Keys.Meta + "s" + Keys.Meta);
         wait.Until(driver =>
         {
-            var textbox = driver.FindElementByName("Search box");
+            var textbox = driver.FindElementByAccessibilityId("SearchTextBox");
             return textbox != null;
         });
         Session?.SendKey("wordpad" + Keys.Enter);
 
         wait.Until(driver =>
         {
-            var window = driver.FindElementByName("Document - WordPad");
+            //var window = Session?.FindElementByName("Document - WordPad"); // for English Edition
+            var window = Session?.FindElementByName("ドキュメント - ワードパッド"); // for Japanese Edition
             return window != null;
         });
-        var notepadWindow = Session?.FindElementByName("Document - WordPad");
+        //var notepadWindow = Session?.FindElementByName("Document - WordPad"); // for English Edition
+        var notepadWindow = Session?.FindElementByName("ドキュメント - ワードパッド"); // for Japanese Edition
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);
     }
 }
