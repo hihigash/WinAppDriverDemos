@@ -26,7 +26,7 @@ public class WordPadTests : DesktopSession
         Session?.SendKey("wordpad");
         Session?.SendKey(Keys.Enter);
 
-        Thread.Sleep(TimeSpan.FromSeconds(5));
+        Thread.Sleep(TimeSpan.FromSeconds(10));
         //var notepadWindow = Session?.FindElementByName("Document - WordPad"); // for English Edition
         var notepadWindow = Session?.FindElementByName("ドキュメント - ワードパッド"); // for Japanese Edition
         notepadWindow?.SendKeys(Keys.Alt + Keys.F4);

@@ -19,16 +19,16 @@ namespace UnitTestProject
         [TestMethod]
         public void AnalyzePageSource()
         {
-var options = new AppiumOptions();
-options.AddAdditionalCapability("app", "Root");
-using (var session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), options, TimeSpan.FromMinutes(30)))
-{
-    XDocument document = XDocument.Parse(session.PageSource);
-    foreach(var element in document.Element("Pane").Elements()) // Desktop Session 直下の要素を列挙
-    {
-        Console.WriteLine($"{element.Name} : {element.Attribute("Name").Value}");
-    }
-}
+            var options = new AppiumOptions();
+            options.AddAdditionalCapability("app", "Root");
+            using (var session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), options, TimeSpan.FromMinutes(30)))
+            {
+                XDocument document = XDocument.Parse(session.PageSource);
+                foreach (var element in document.Element("Pane").Elements()) // Desktop Session 直下の要素を列挙
+                {
+                    Console.WriteLine($"{element.Name} : {element.Attribute("Name").Value}");
+                }
+            }
         }
 
         [TestMethod]
